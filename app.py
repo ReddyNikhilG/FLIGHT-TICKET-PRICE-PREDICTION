@@ -31,18 +31,13 @@ df = load_data()
 model = load_model()
 metrics = load_metrics()
 
+# Feature importance data for charts
+feat_imp_data = metrics.get("feature_importance", {})
+
 # ---------------- HEADER ----------------
 
 st.title("✈️ Flight Ticket Price Intelligence Dashboard")
-st.caption("Gradient Boosting ML System for Airline Price Prediction")
-
-# ---------------- MODEL METRICS BANNER ----------------
-
-m1, m2, m3, m4 = st.columns(4)
-m1.metric("Model R² Score", f"{metrics['r2']:.4f}")
-m2.metric("MAE", f"₹ {metrics['mae']:,.0f}")
-m3.metric("RMSE", f"₹ {metrics['rmse']:,.0f}")
-m4.metric("CV R² (5-Fold)", f"{metrics['cv_r2_mean']:.4f} ± {metrics['cv_r2_std']:.4f}")
+st.caption("Smart Airline Price Prediction & Analytics")
 
 st.divider()
 
@@ -138,7 +133,7 @@ st.divider()
 tab1, tab2, tab3, tab4 = st.tabs([
     "📊 Price Analytics",
     "🗺️ Route Analysis",
-    "🤖 Model Insights",
+    "🔍 Insights & Simulator",
     "📋 Dataset"
 ])
 
@@ -275,35 +270,21 @@ with tab2:
 
 # ============ TAB 3: MODEL INSIGHTS ============
 with tab3:
-    st.markdown("#### Feature Importance (Top 15)")
-
-    feat_imp = metrics.get("feature_importance", {})
-    if feat_imp:
-        fi_df = pd.DataFrame(
-            list(feat_imp.items()), columns=["Feature", "Importance"]
-        ).sort_values("Importance", ascending=True)
-
-        fig_fi = px.bar(
-            fi_df, x="Importance", y="Feature", orientation="h",
-            color="Importance", color_continuous_scale="Viridis"
-        )
-        fig_fi.update_layout(height=500, margin=dict(t=20, b=20), showlegend=False)
-        st.plotly_chart(fig_fi, use_container_width=True)
-
     col_a, col_b = st.columns(2)
+
     with col_a:
-        st.markdown("#### Model Details")
-        st.markdown(f"""
-        | Metric | Value |
-        |--------|-------|
-        | Algorithm | Gradient Boosting Regressor |
-        | Training Samples | {metrics['train_size']:,} |
-        | Test Samples | {metrics['test_size']:,} |
-        | R² Score | {metrics['r2']:.4f} |
-        | MAE | ₹ {metrics['mae']:,.0f} |
-        | RMSE | ₹ {metrics['rmse']:,.0f} |
-        | Cross-Validation R² | {metrics['cv_r2_mean']:.4f} ± {metrics['cv_r2_std']:.4f} |
-        """)
+        st.markdown("#### Key Price Drivers")
+        if feat_imp_data:
+            fi_df = pd.DataFrame(
+                list(feat_imp_data.items()), columns=["Feature", "Importance"]
+            ).sort_values("Importance", ascending=True)
+
+            fig_fi = px.bar(
+                fi_df, x="Importance", y="Feature", orientation="h",
+                color="Importance", color_continuous_scale="Viridis"
+            )
+            fig_fi.update_layout(height=500, margin=dict(t=20, b=20), showlegend=False)
+            st.plotly_chart(fig_fi, use_container_width=True)
 
     with col_b:
         st.markdown("#### Price Sensitivity Simulator")
@@ -321,7 +302,7 @@ with tab3:
             sim_df, x="Days Left", y="Predicted Price (₹)",
             markers=True
         )
-        fig_sim.update_layout(height=350, margin=dict(t=20, b=20))
+        fig_sim.update_layout(height=500, margin=dict(t=20, b=20))
         st.plotly_chart(fig_sim, use_container_width=True)
 
 # ============ TAB 4: DATASET ============
