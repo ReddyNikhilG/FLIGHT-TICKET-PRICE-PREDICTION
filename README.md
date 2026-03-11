@@ -121,7 +121,7 @@ streamlit run streamlit_app.py
 After running the application, open your browser and go to:
 
 ```
-http://localhost:8501
+https://flight-ticket-price-prediction-ljpfovdfvtsoxbxrv9866j.streamlit.app/
 ```
 
 You will see the **Flight Ticket Price Prediction Dashboard** where you can enter flight details and get predicted prices.
