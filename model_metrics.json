@@ -1,0 +1,26 @@
+{
+  "r2": 0.9676,
+  "mae": 2366.1,
+  "rmse": 4153.78,
+  "cv_r2_mean": 0.966,
+  "cv_r2_std": 0.0023,
+  "train_size": 12006,
+  "test_size": 3002,
+  "feature_importance": {
+    "class_Business": 0.4471613000016727,
+    "class_Economy": 0.43889002849029,
+    "duration": 0.051999695241549626,
+    "days_left": 0.018084022352847173,
+    "airline_Vistara": 0.006684905817904132,
+    "airline_Air_India": 0.004981946690202787,
+    "source_city_Delhi": 0.002818226792247201,
+    "destination_city_Mumbai": 0.002427932873109241,
+    "destination_city_Kolkata": 0.0023969850792193393,
+    "destination_city_Delhi": 0.002389404007352883,
+    "destination_city_Hyderabad": 0.0019022986539910997,
+    "source_city_Hyderabad": 0.0018452005722658584,
+    "source_city_Kolkata": 0.00168800461243938,
+    "source_city_Bangalore": 0.0016239693128871308,
+    "arrival_time_Evening": 0.0015733403832806877
+  }
+}
