@@ -76,6 +76,14 @@ def build_input_frame(payload: dict) -> pd.DataFrame:
 
 
 class Handler(BaseHTTPRequestHandler):
+    @staticmethod
+    def _normalized_path(raw_path: str) -> str:
+        # Ignore query params and treat trailing slash routes the same.
+        base_path = raw_path.split("?", 1)[0]
+        if base_path != "/" and base_path.endswith("/"):
+            base_path = base_path[:-1]
+        return base_path
+
     def _send_json(self, status_code: int, payload: dict):
         body = json.dumps(payload).encode("utf-8")
         self.send_response(status_code)
@@ -95,16 +103,29 @@ class Handler(BaseHTTPRequestHandler):
         self.end_headers()
 
     def do_GET(self):
-        if self.path == "/health":
+        path = self._normalized_path(self.path)
+
+        if path == "/":
+            self._send_json(
+                200,
+                {
+                    "service": "flight-ticket-price-prediction-api",
+                    "status": "ok",
+                    "endpoints": ["/health", "/metadata", "/predict"],
+                },
+            )
+            return
+        if path == "/health":
             self._send_json(200, {"status": "ok"})
             return
-        if self.path == "/metadata":
+        if path == "/metadata":
             self._send_json(200, {"options": OPTIONS})
             return
         self._send_json(404, {"error": "Not found"})
 
     def do_POST(self):
-        if self.path != "/predict":
+        path = self._normalized_path(self.path)
+        if path != "/predict":
             self._send_json(404, {"error": "Not found"})
             return
 
