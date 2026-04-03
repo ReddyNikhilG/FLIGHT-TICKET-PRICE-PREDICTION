@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { useAuth } from "../context/AuthContext";
+import flight2Img from "../assets/flight2.jpg";
 
-const heroImage = "/src/assets/flight2.jpg";
+const heroImage = flight2Img;
 
 type OptionResponse = {
   options: {
