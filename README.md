@@ -1,5 +1,3 @@
-# ✈️ Flight Ticket Price Prediction Web Application
-
 # ✈️ Flight Ticket Price Prediction System
 
 ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white)
@@ -68,7 +66,7 @@ FLIGHT-TICKET-PRICE-PREDICTION
 
 # 👨‍💻 Author
 
-**Reddy Nikhil**
+**Gali Reddy Nikhil**
 
 B.Tech Computer Science (AI & ML)
 
