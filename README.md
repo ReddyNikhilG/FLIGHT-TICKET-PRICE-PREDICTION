@@ -1,68 +1,103 @@
-# ✈️ Flight Ticket Price Prediction System
+# ✈️ Flight Ticket Price Prediction
 
-![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Scikit-Learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+A Machine Learning-based web application that predicts flight ticket prices based on user inputs such as airline, source, destination, journey date, stops, and travel duration.
+
+---
 
 ## 📌 Project Overview
-This is a high-performance **Flight Ticket Price Prediction Web Application**. The system uses historical flight data to predict the estimated fare of a flight based on various user-defined parameters. 
 
-By analyzing patterns in airline demand, travel routes, and booking classes, the model provides travelers with data-backed price estimations to help them make better travel decisions.
+Flight ticket prices fluctuate based on multiple factors such as demand, time, airline, and route. This project aims to build a predictive model that helps users estimate ticket prices in advance and make better travel decisions.
+
+The system uses historical flight data and applies machine learning algorithms to predict the fare accurately.
 
 ---
 
 ## 🚀 Features
-* **Machine Learning Powered:** Uses a Random Forest Regressor for highly accurate predictions.
-* **Interactive Dashboard:** Built with **Streamlit** for a seamless user experience.
-* **Advanced UI Components:** Includes a custom **TypeScript/React** frontend logic (located in `/flypredict-ui`).
-* **Real-time Inference:** Instant price calculation upon entering flight details.
-* **Data Visualization:** Comprehensive insights into feature importance and price trends.
+
+- Predict flight ticket prices instantly
+- User-friendly web interface
+- Real-time input-based predictions
+- Handles categorical and numerical data
+- High accuracy using optimized ML model
+- End-to-end ML pipeline (EDA → Model → Deployment)
 
 ---
 
-## 🛠️ Technology Stack
+## 🧠 Machine Learning Workflow
 
-### **Backend & Machine Learning**
-* **Language:** Python
-* **ML Library:** Scikit-learn (Random Forest Regressor)
-* **Data Handling:** Pandas, NumPy
-* **Serialization:** Pickle (for `model.pkl`)
-
-### **Frontend**
-* **Framework:** Streamlit
-* **Languages:** TypeScript, JavaScript (Custom UI components)
-* **Design:** CSS3, HTML5
-* **Charts:** Plotly / Matplotlib
-
-### **Dev Tools**
-* **Deployment:** Render / Streamlit Cloud
-* **Environment:** Docker / DevContainers
+1. Data Collection  
+2. Data Cleaning & Preprocessing  
+3. Exploratory Data Analysis (EDA)  
+4. Feature Engineering  
+5. Model Training  
+6. Model Evaluation  
+7. Model Deployment  
 
 ---
 
-## 📊 Model Performance
-The model has been rigorously evaluated to ensure reliability:
+## 📊 Dataset
 
-| Metric | Accuracy / Value |
-| :--- | :--- |
-| **R² Score** | **0.98** (Explains 98% of price variance) |
-| **Mean Absolute Error (MAE)** | **₹1,100** |
-| **Root Mean Squared Error (RMSE)** | **1,800** |
+- Dataset contains flight details such as:
+  - Airline
+  - Source
+  - Destination
+  - Date of Journey
+  - Total Stops
+  - Duration
+  - Price (Target)
+
+- Data preprocessing includes:
+  - Handling missing values
+  - Encoding categorical features
+  - Removing outliers
+  - Feature scaling
 
 ---
 
-## 📂 Project Structure
-```bash
-FLIGHT-TICKET-PRICE-PREDICTION
-├── flypredict-ui/           # TypeScript UI assets
-├── .devcontainer/           # Dev environment settings
-├── airlines_flights_data.csv # Raw Dataset
-├── train_model.py           # ML Training Script
-├── app.py                   # Main Streamlit Application
-├── model.pkl                # Trained Serialized Model
-├── model_metrics.json       # Performance evaluation logs
-└── requirements.txt         # Project Dependencies
+## ⚙️ Algorithms Used
+
+- Linear Regression
+- Decision Tree Regressor
+- Random Forest Regressor (Final Model)
+
+👉 Random Forest was selected due to its high accuracy and robustness for regression problems :contentReference[oaicite:0]{index=0}
+
+---
+
+## 📈 Model Performance
+
+| Model                  | Accuracy |
+|----------------------|---------|
+| Linear Regression     | ~70–75% |
+| Decision Tree         | ~90%    |
+| Random Forest         | ~93%    |
+
+---
+
+## 🏗️ Tech Stack
+
+### 👨‍💻 Backend
+- Python
+- Flask
+
+### 📊 Machine Learning
+- Scikit-learn
+- Pandas
+- NumPy
+
+### 🌐 Frontend
+- HTML
+- CSS
+- JavaScript
+
+### 🛠 Tools
+- Jupyter Notebook
+- VS Code
+
+---
+
+## 📁 Project Structure
+
 
 # 👨‍💻 Author
 
