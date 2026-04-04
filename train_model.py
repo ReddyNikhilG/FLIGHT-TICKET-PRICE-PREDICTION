@@ -1,5 +1,6 @@
 import argparse
 import json
+import os
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
 
@@ -13,11 +14,12 @@ from sklearn.model_selection import cross_val_score, train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
-HOST = "127.0.0.1"
-PORT = 8000
+HOST = os.getenv("HOST", "0.0.0.0")
+PORT = int(os.getenv("PORT", "8001"))
 DATA_FILE = Path("airlines_flights_data.csv")
 MODEL_FILE = Path("model.pkl")
 METRICS_FILE = Path("model_metrics.json")
+HISTORY_FILE = Path("prediction_history.json")
 TARGET = "price"
 
 
@@ -119,6 +121,52 @@ def train_and_save_model() -> Pipeline:
     return pipeline
 
 
+def load_metrics() -> dict:
+    if not METRICS_FILE.exists():
+        return {}
+    try:
+        with METRICS_FILE.open("r", encoding="utf-8") as file_obj:
+            data = json.load(file_obj)
+            return data if isinstance(data, dict) else {}
+    except Exception:
+        return {}
+
+
+def load_history() -> list[dict]:
+    if not HISTORY_FILE.exists():
+        return []
+    try:
+        with HISTORY_FILE.open("r", encoding="utf-8") as file_obj:
+            data = json.load(file_obj)
+            return data if isinstance(data, list) else []
+    except Exception:
+        return []
+
+
+def save_history(history_items: list[dict]) -> None:
+    with HISTORY_FILE.open("w", encoding="utf-8") as file_obj:
+        json.dump(history_items, file_obj, ensure_ascii=False, indent=2)
+
+
+def log_prediction(payload: dict, predicted_price: float) -> None:
+    history = load_history()
+    history_item = {
+        "timestamp": pd.Timestamp.utcnow().isoformat(),
+        "airline": payload.get("airline"),
+        "source_city": payload.get("source_city"),
+        "destination_city": payload.get("destination_city"),
+        "departure_time": payload.get("departure_time"),
+        "arrival_time": payload.get("arrival_time"),
+        "stops": payload.get("stops"),
+        "class": payload.get("class"),
+        "duration": payload.get("duration"),
+        "days_left": payload.get("days_left"),
+        "predicted_price": round(float(predicted_price), 2),
+    }
+    history.insert(0, history_item)
+    save_history(history[:100])
+
+
 def get_feature_columns_from_model(model: Pipeline, data: pd.DataFrame) -> list[str]:
     try:
         prep = model.named_steps["prep"]
@@ -196,12 +244,31 @@ def serve_api() -> None:
             self.end_headers()
 
         def do_GET(self):
+            if self.path == "/":
+                self._send_json(
+                    200,
+                    {
+                        "service": "flight-ticket-price-prediction-api",
+                        "status": "ok",
+                        "endpoints": ["/health", "/metadata", "/metrics", "/history", "/predict"],
+                    },
+                )
+                return
+
             if self.path == "/health":
                 self._send_json(200, {"status": "ok"})
                 return
 
             if self.path == "/metadata":
                 self._send_json(200, {"options": options})
+                return
+
+            if self.path == "/metrics":
+                self._send_json(200, {"metrics": load_metrics()})
+                return
+
+            if self.path == "/history":
+                self._send_json(200, {"history": load_history()})
                 return
 
             self._send_json(404, {"error": "Not found"})
@@ -221,6 +288,7 @@ def serve_api() -> None:
                 payload = json.loads(raw.decode("utf-8"))
                 input_df = build_input_frame(payload, feature_columns)
                 prediction = float(model.predict(input_df)[0])
+                log_prediction(payload, prediction)
                 self._send_json(200, {"predicted_price": round(prediction, 2)})
             except KeyError as key_error:
                 self._send_json(400, {"error": f"Missing field: {key_error}"})

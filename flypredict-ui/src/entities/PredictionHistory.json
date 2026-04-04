@@ -1,0 +1,56 @@
+{
+  "name": "PredictionHistory",
+  "type": "object",
+  "properties": {
+    "airline": {
+      "type": "string",
+      "description": "Selected airline"
+    },
+    "source_city": {
+      "type": "string",
+      "description": "Departure city"
+    },
+    "destination_city": {
+      "type": "string",
+      "description": "Arrival city"
+    },
+    "departure_time": {
+      "type": "string",
+      "description": "Time of departure"
+    },
+    "arrival_time": {
+      "type": "string",
+      "description": "Time of arrival"
+    },
+    "stops": {
+      "type": "string",
+      "description": "Number of stops"
+    },
+    "travel_class": {
+      "type": "string",
+      "enum": [
+        "Economy",
+        "Business"
+      ],
+      "description": "Travel class"
+    },
+    "duration": {
+      "type": "number",
+      "description": "Flight duration in hours"
+    },
+    "days_left": {
+      "type": "number",
+      "description": "Days until departure"
+    },
+    "predicted_price": {
+      "type": "number",
+      "description": "ML model predicted price in INR"
+    }
+  },
+  "required": [
+    "airline",
+    "source_city",
+    "destination_city",
+    "predicted_price"
+  ]
+}

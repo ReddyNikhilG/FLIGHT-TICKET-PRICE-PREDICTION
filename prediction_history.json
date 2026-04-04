@@ -1,0 +1,37 @@
+[
+  {
+    "timestamp": "2026-04-04T08:01:56.423960+00:00",
+    "airline": "Indigo",
+    "source_city": "Chennai",
+    "destination_city": "Hyderabad",
+    "departure_time": "Night",
+    "arrival_time": "Night",
+    "stops": "zero",
+    "class": "Economy",
+    "duration": 2,
+    "days_left": 1,
+    "predicted_price": 8997.12
+  },
+  {
+    "timestamp": "2026-04-04T07:44:47.416377+00:00",
+    "airline": "Air India",
+    "source_city": "Delhi",
+    "destination_city": "Mumbai",
+    "departure_time": "Morning",
+    "arrival_time": "Evening",
+    "stops": "zero",
+    "class": "Economy",
+    "duration": 2.5,
+    "days_left": 7,
+    "predicted_price": 7506.69
+  },
+  {
+    "timestamp": "2026-04-04T06:15:26.218040+00:00",
+    "source_city": "Delhi",
+    "destination_city": "Mumbai",
+    "airline": "Indigo",
+    "class": "Economy",
+    "days_left": 15,
+    "predicted_price": 5645.47
+  }
+]
