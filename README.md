@@ -85,31 +85,6 @@ Built with a complete ML pipeline and deployed using a modern web stack, this sy
 
 ---
 
-## 📸 Application Screenshots  
-
-### 🏠 Home Page  
-![Home](https://raw.githubusercontent.com/ReddyNikhilG/FLIGHT-TICKET-PRICE-PREDICTION/main/assets/home.png)
-
-### 💡 Features Section  
-![Features](https://raw.githubusercontent.com/ReddyNikhilG/FLIGHT-TICKET-PRICE-PREDICTION/main/assets/features.png)
-
-### 🔄 ML Pipeline  
-![Pipeline](https://raw.githubusercontent.com/ReddyNikhilG/FLIGHT-TICKET-PRICE-PREDICTION/main/assets/pipeline.png)
-
-### ⚙️ Tech Stack UI  
-![Tech Stack](https://raw.githubusercontent.com/ReddyNikhilG/FLIGHT-TICKET-PRICE-PREDICTION/main/assets/techstack.png)
-
-### 🔮 Prediction Interface  
-![Predict](https://raw.githubusercontent.com/ReddyNikhilG/FLIGHT-TICKET-PRICE-PREDICTION/main/assets/predict.png)
-
-### 📊 Dashboard  
-![Dashboard](https://raw.githubusercontent.com/ReddyNikhilG/FLIGHT-TICKET-PRICE-PREDICTION/main/assets/dashboard.png)
-
-### 📜 Prediction History  
-![History](https://raw.githubusercontent.com/ReddyNikhilG/FLIGHT-TICKET-PRICE-PREDICTION/main/assets/history.png)
-
----
-
 ## 📂 Project Structure  
 FLIGHT-TICKET-PRICE-PREDICTION/
 │
