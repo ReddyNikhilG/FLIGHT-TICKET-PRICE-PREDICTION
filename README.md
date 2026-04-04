@@ -14,6 +14,12 @@ Built with a complete ML pipeline and deployed using a modern web stack, this sy
 
 ---
 
+## 📂 Dataset  
+
+This project uses a publicly available dataset from Kaggle.
+
+---
+
 ## 🌟 Key Highlights  
 
 - 🎯 **96.8% R² Score** (High Accuracy Model)  
