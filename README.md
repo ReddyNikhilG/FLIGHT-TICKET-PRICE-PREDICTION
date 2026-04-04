@@ -112,7 +112,7 @@ npm install
 npm start
 
 ---
-
+```
 ## 🎯 Use Cases  
 
 - ✈️ Travelers planning cheapest booking time  
