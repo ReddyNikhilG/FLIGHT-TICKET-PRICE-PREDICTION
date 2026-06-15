@@ -10,10 +10,10 @@ This project is split into:
 2. In Render, create a new Web Service from your repo.
 3. Configure:
    - Root Directory: .
-   - Runtime: Python
-   - Build Command: pip install -r requirements.txt
-   - Start Command: python app.py
-4. Add environment variables (optional):
+   - Runtime: Python (Python 3.10+ is required, configured automatically via `.python-version`)
+   - Build Command: `pip install -r requirements.txt` (Optimized to exclude unused packages like streamlit/plotly to stay within Render's free tier memory limit)
+   - Start Command: `python app.py`
+4. Add environment variables:
    - HOST=0.0.0.0
    - PORT=10000
 5. Deploy and copy your backend URL, for example:
